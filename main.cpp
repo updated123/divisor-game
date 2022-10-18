@@ -68,13 +68,18 @@ void func1(int row,int col)
 }
 void rec()
 {
+    if(cnt==n*n) return;
     r[0]=random(2,100);
     r[1]=random(2,100);
     r[2]=random(2,100);
-    if(cnt==n*n) return;
-    ind=random(0,2);
-    int row=random(0,n-1);
-    int col=random(0,n-1);
+    cout<<r[0]<<' '<<r[1]<<' '<<r[2]<<'\n';
+    cout<<"Choose any of one no. in zero indexing :";
+    cin>>ind;
+    cout<<'\n';
+    int row,col;
+    cout<<"choose row and columns :";
+    cin>>row>>col;
+    cout<<'\n';
     if(A[row][col] != 0) {
         rec();
         return;
