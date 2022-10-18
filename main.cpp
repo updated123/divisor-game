@@ -78,7 +78,7 @@ void rec()
     cin>>ind;
     cout<<'\n';
     int row,col;
-    cout<<"choose row and col :";
+    cout<<"choose row and col in :";
     cin>>row>>col;
     cout<<'\n';
     if(A[row][col] != 0) {
