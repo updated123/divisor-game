@@ -69,6 +69,15 @@ void func1(int row,int col)
 void rec()
 {
     if(cnt==n*n) return;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cout<<A[i][j]<<' ';
+        }
+        cout<<'\n';
+    }
+    cout<<'\n';
     r[0]=random(2,100);
     r[1]=random(2,100);
     r[2]=random(2,100);
