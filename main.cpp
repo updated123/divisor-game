@@ -50,7 +50,7 @@ void func1(int row,int col)
     }
     reverse(v.begin(), v.end());
     for(int i=0;i<v.size();i++) {
-        if(r[ind]%v[i].first)
+        if(r[ind]%v[i].first==0)
         {
             ans+=r[ind]/A[v[i].second.first][v[i].second.second];
             A[row][col]/=A[v[i].second.first][v[i].second.second];
@@ -69,14 +69,6 @@ void func1(int row,int col)
 void rec()
 {
     if(cnt==n*n) return;
-    for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<n;j++)
-        {
-            cout<<A[i][j]<<' ';
-        }
-        cout<<'\n';
-    }
     cout<<'\n';
     r[0]=random(2,100);
     r[1]=random(2,100);
@@ -86,7 +78,7 @@ void rec()
     cin>>ind;
     cout<<'\n';
     int row,col;
-    cout<<"choose row and columns :";
+    cout<<"choose row and col :";
     cin>>row>>col;
     cout<<'\n';
     if(A[row][col] != 0) {
@@ -96,6 +88,15 @@ void rec()
     A[row][col] = r[ind];
     cnt++;
     func1(row,col);
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cout<<A[i][j]<<' ';
+        }
+        cout<<'\n';
+    }
+    cout<<"Your current score is :"<<ans<<'\n';
     rec();
 }
 signed main()
@@ -106,6 +107,14 @@ signed main()
     int row=random(0,n-1);
     int col=random(0,n-1);
     A[row][col] = random(2,100);
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cout<<A[i][j]<<' ';
+        }
+        cout<<'\n';
+    }
     rec();
     cout<<"ans " << ans<<'\n';
 } 
