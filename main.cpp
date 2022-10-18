@@ -72,11 +72,9 @@ void rec()
     r[1]=random(2,100);
     r[2]=random(2,100);
     if(cnt==n*n) return;
-    
     ind=random(0,2);
-    int index=random(0,n * n - 1);
-    int row=index/n;
-    int col=index%n;
+    int row=random(0,n-1);
+    int col=random(0,n-1);
     if(A[row][col] != 0) {
         rec();
         return;
@@ -90,10 +88,9 @@ signed main()
 {
     cout<<"enter size of grid : ";
     cin>>n;
-    A.resize(5, vector<int>(5, 0));
-    int index=random(0,n * n - 1);
-    int row=index/n;
-    int col=index%n;
+    A.resize(n, vector<int>(n, 0));
+    int row=random(0,n-1);
+    int col=random(0,n-1);
     A[row][col] = random(2,100);
     rec();
     cout<<"ans " << ans<<'\n';
