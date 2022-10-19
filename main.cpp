@@ -26,10 +26,10 @@ vector<int> biasedno(int n)
         } 
     }
     int i=2;
-    int x=i*n;
     while(i*n<=100)
     {
         ans.push_back(i*n);
+        i++;
     }
     return ans;
 }
