@@ -7,6 +7,35 @@ int ans=0;
 int n,cnt = 0;
 vector<vector<int>> A;
 vector<int> r(3);
+
+
+vector<int> biasedno(int n)
+{
+    vector<int> ans;
+    for(int i=1;i*i<=n;i++)
+    {
+        if(n%i==0)
+        {
+            if(i!=1){
+                ans.push_back(i);
+            }
+            if(i*i!=n && n/i!=1)
+            {
+                ans.push_back(n/i);
+            }
+        } 
+    }
+    int i=2;
+    int x=i*n;
+    while(i*n<=100)
+    {
+        ans.push_back(i*n);
+    }
+    return ans;
+}
+
+
+
 bool check(int x,int y)
 {
     if(x<0 || x>=n || y<0 || y>=n || A[x][y] == 0) return false;
@@ -36,6 +65,11 @@ void func1(int row,int col)
         if(v[i].first%r[ind]==0)
         {
             ans+=A[v[i].second.first][v[i].second.second]/r[ind];
+            if(r[ind]==v[i].first)
+            {
+                A[v[i].second.first][v[i].second.second] = 0;
+                cnt--;
+            }
             A[v[i].second.first][v[i].second.second]/=r[ind];
             A[row][col] = 0;
             cnt--;
@@ -53,6 +87,11 @@ void func1(int row,int col)
         if(r[ind]%v[i].first==0)
         {
             ans+=r[ind]/A[v[i].second.first][v[i].second.second];
+            if(r[ind]==v[i].first)
+            {
+                A[row][col]=0;
+                cnt--;
+            }
             A[row][col]/=A[v[i].second.first][v[i].second.second];
             A[v[i].second.first][v[i].second.second] = 0;
             cnt--;
@@ -70,9 +109,63 @@ void rec()
 {
     if(cnt==n*n) return;
     cout<<'\n';
-    r[0]=random(2,100);
-    r[1]=random(2,100);
-    r[2]=random(2,100);
+    int x=random(0,1);
+    int y=random(0,1);
+    int z=random(0,1);
+    
+    vector<int> values;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            if(A[i][j]!=0)
+            {
+                values.push_back(A[i][j]);
+            }
+        }
+    }
+    vector<int>vv;
+    for(auto i:values)
+    {
+       vector<int> temp;
+       temp=biasedno(i);
+       for(auto j:temp)
+       {
+           vv.push_back(j);
+       }
+    }
+    
+    
+    
+    if(x==0)
+    {
+        r[0]=random(2,100);
+    }
+    else{
+        int a=vv.size();
+        int in=random(0,a-1);
+        r[0]=vv[in];
+    }
+    if(y==0)
+    {
+        r[1]=random(2,100);
+    }
+    else{
+        int a=vv.size();
+        int in=random(0,a-1);
+        r[1]=vv[in];
+    }
+    if(z==0)
+    {
+        r[2]=random(2,100);
+    }
+    else{
+        int a=vv.size();
+        int in=random(0,a-1);
+        r[2]=vv[in];
+    }
+    
+    
     cout<<r[0]<<' '<<r[1]<<' '<<r[2]<<'\n';
     cout<<"Choose any of one no. in zero indexing :";
     cin>>ind;
